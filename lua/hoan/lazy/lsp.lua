@@ -11,10 +11,32 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        -- main one
+        { "ms-jpq/coq_nvim",       branch = "coq" },
+
+        -- 9000+ Snippets
+        { "ms-jpq/coq.artifacts",  branch = "artifacts" },
+
+        -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+        -- Need to **configure separately**
+        { 'ms-jpq/coq.thirdparty', branch = "3p" }
+        -- - shell repl
+        -- - nvim lua api
+        -- - scientific calculator
+        -- - comment banner
+        -- - etc
+
     },
+    init = function()
+        vim.g.coq_settings = {
+            auto_start = true, -- if you want to start COQ at startup
+            -- Your COQ settings here
+        }
+    end,
 
     config = function()
         local cmp = require('cmp')
+        local coq = require("coq")
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
@@ -35,6 +57,21 @@ return {
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
+                end,
+
+                csharp_ls = function()
+                    local lspconfig = require("lspconfig")
+                    local csharpconf = {
+                        cmd = { "csharp-ls" },
+                        init_options = {
+                            AutomaticWorkspaceInit = true,
+                            HostPid = pid,
+                            RootPath = vim.fn.getcwd(),
+                        },
+                    }
+
+                    -- lspconfig.csharp_ls.setup(csharpconf)
+                    lspconfig.csharp_ls.setup(coq.lsp_ensure_capabilities(csharpconf))
                 end,
 
                 zls = function()

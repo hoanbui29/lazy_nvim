@@ -11,6 +11,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "Decodetalkers/csharpls-extended-lsp.nvim",
         -- main one
         { "ms-jpq/coq_nvim",       branch = "coq" },
 
@@ -43,6 +44,16 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
+        function show_errors_only()
+            local diagnostics = vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.WARN } })
+            local errors = {}
+
+            for _, diag in pairs(diagnostics) do
+                table.insert(errors, diag)
+            end
+
+            vim.diagnostic.setqflist(errors)
+        end
 
         require("fidget").setup({})
         require("mason").setup()
@@ -61,8 +72,17 @@ return {
 
                 csharp_ls = function()
                     local lspconfig = require("lspconfig")
+                    local pid = vim.fn.getpid()
+                    -- On linux/darwin if using a release build, otherwise under scripts/OmniSharp(.Core)(.cmd)
+                    -- on Windows
+                    -- local omnisharp_bin = "/path/to/omnisharp/OmniSharp.exe"
+
                     local csharpconf = {
                         cmd = { "csharp-ls" },
+                        handlers = {
+                            ["textDocument/definition"] = require('csharpls_extended').handler,
+                            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+                        },
                         init_options = {
                             AutomaticWorkspaceInit = true,
                             HostPid = pid,
@@ -132,6 +152,7 @@ return {
 
         vim.diagnostic.config({
             -- update_in_insert = true,
+            virtual_text = true,
             float = {
                 focusable = false,
                 style = "minimal",

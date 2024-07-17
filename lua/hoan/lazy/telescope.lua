@@ -30,5 +30,20 @@ return {
             builtin.grep_string({ search = word })
         end)
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+
+        vim.api.nvim_set_keymap(
+            "n",
+            "<leader>fB",
+            ":Telescope file_browser<CR>",
+            { noremap = true }
+        )
+
+        -- open file_browser with the path of the current buffer
+        vim.api.nvim_set_keymap(
+            "n",
+            "<leader>fB",
+            ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+            { noremap = true }
+        )
     end
 }

@@ -58,8 +58,8 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set("n", "<C-j>", function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set("n", "<C-k>", function() vim.diagnostic.goto_prev() end, opts)
     end
 })
 

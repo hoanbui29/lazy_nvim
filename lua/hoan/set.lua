@@ -33,4 +33,5 @@ vim.api.nvim_command('hi! link NormalFloat Normal')
 --vim.opt.colorcolumn = "80"
 
 vim.api.nvim_set_var('netrw_bufsettings', 'noma nomod nu nowrap ro nobl')
-vim.cmd("set spell spelllang=en_us")
+-- vim.cmd("set spell spelllang=en_us")
+vim.opt.spell = false

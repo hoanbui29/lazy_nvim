@@ -1,13 +1,13 @@
 --Function
-function insert_csharp_xmldoc()
-    local lines = {
-        '/// <summary>',
-        '/// ',
-        '/// </summary>'
-    }
-    -- Insert the lines at the current cursor position
-    vim.api.nvim_put(lines, 'c', false, false)
-end
+-- function insert_csharp_xmldoc()
+--     local lines = {
+--         '/// <summary>',
+--         '/// ',
+--         '/// </summary>'
+--     }
+--     -- Insert the lines at the current cursor position
+--     vim.api.nvim_put(lines, 'c', false, false)
+-- end
 
 function filePathToNamespace(filePath, className)
     local pathSeparator = package.config:sub(1, 1)                                             -- Detects the path separator for the OS
@@ -102,7 +102,7 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.api.nvim_set_keymap('n', '<leader>K', '<Cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true });
 
-vim.api.nvim_set_keymap('n', '<C-/>', '<cmd>lua insert_csharp_xmldoc()<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<C-/>', '<cmd>lua insert_csharp_xmldoc()<CR>', { noremap = true, silent = true })
 
 --Nvim tree navigation
 vim.keymap.set("n", "<leader>tt", "<cmd>NvimTreeToggle()<CR>")

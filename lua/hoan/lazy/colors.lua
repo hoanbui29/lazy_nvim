@@ -105,6 +105,7 @@ return {
                     italic = false,
                 },
             })
+            ColorMyPencils("kanagawa")
         end
     },
     {
@@ -134,7 +135,6 @@ return {
                     light = "lotus"
                 },
             })
-            ColorMyPencils("kanagawa")
         end
 
     }

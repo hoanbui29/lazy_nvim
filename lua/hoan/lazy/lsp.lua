@@ -24,16 +24,6 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
-        function show_errors_only()
-            local diagnostics = vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.WARN } })
-            local errors = {}
-
-            for _, diag in pairs(diagnostics) do
-                table.insert(errors, diag)
-            end
-
-            vim.diagnostic.setqflist(errors)
-        end
 
         require("fidget").setup({})
         require("mason").setup()

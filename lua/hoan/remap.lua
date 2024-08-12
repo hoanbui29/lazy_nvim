@@ -45,7 +45,7 @@ end
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ex_to_current_file)
 
-vim.api.nvim_set_keymap('n', '<C-c><C-s>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-c><C-c>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
 -- Allow move code up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -73,19 +73,22 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Copy to system clipboard
 vim.keymap.set({ "n", "v" }, "y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "c", [["+c]])
+vim.keymap.set("n", "C", [["+C]])
+vim.keymap.set({ "n", "v" }, "x", [["+x]])
 
 -- Cut to clipboard
 vim.keymap.set({ "n", "v" }, "<leader>d", [["+x]])
 
 -- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
+-- vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Disable Q command
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
-vim.keymap.set("n", "<A-CR>", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+vim.keymap.set("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
 -- Quick fix navigation
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")

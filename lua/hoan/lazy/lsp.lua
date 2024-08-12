@@ -29,9 +29,7 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",
-                "rust_analyzer",
-                "gopls",
+                "lua_ls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -134,13 +132,13 @@ return {
                 ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 ['<C-e>'] = cmp.mapping.close(),
                 ["<C-Space>"] = cmp.mapping.complete(),
-                ["<Tab>"] = vim.schedule_wrap(function(fallback)
-                    if cmp.visible() and has_words_before() then
-                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                    else
-                        fallback()
-                    end
-                end),
+                -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
+                --     if cmp.visible() and has_words_before() then
+                --         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                --     else
+                --         fallback()
+                --     end
+                -- end),
             }),
             formatting = {
                 format = lspkind.cmp_format({
@@ -154,11 +152,22 @@ return {
             },
             sources    = cmp.config.sources({
                 -- Copilot Source
-                { name = "copilot",  group_index = 2 },
+                -- { name = "copilot",  group_index = 2 },
                 { name = 'nvim_lsp', group_index = 2 },
                 { name = 'luasnip' },
-                { name = 'buffer',   group_index = 2 },
-            })
+                -- { name = 'buffer',   group_index = 2 },
+            }),
+            sorting    = {
+                comparators = {
+                    cmp.config.compare.offset,
+                    cmp.config.compare.exact,
+                    cmp.config.compare.score,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.sort_text,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
+                }
+            }
         })
 
         vim.diagnostic.config({

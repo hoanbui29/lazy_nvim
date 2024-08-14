@@ -45,7 +45,9 @@ end
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ex_to_current_file)
 
-vim.api.nvim_set_keymap('n', '<C-c><C-c>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-q>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
+-- This is going to get me cancelled
+vim.keymap.set("i", "<C-c>", "<Esc>")
 -- Allow move code up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -87,7 +89,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["+x]])
 -- Disable Q command
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 vim.keymap.set("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
 -- Quick fix navigation
@@ -136,9 +137,9 @@ vim.api.nvim_set_keymap("n", "<c-t>", "<Cmd>exe v:count1 . 'ToggleTerm direction
 -- vim.api.nvim_set_keymap("i", "<c-t>", "<Esc><Cmd>exe v:count1 . 'ToggleTerm'<CR>", { silent = true, noremap = true })
 
 -- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.cs", "*.go" },
-    callback = function()
-        vim.lsp.buf.format()
-    end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     pattern = { "*.cs", "*.go" },
+--     callback = function()
+--         vim.lsp.buf.format()
+--     end,
+-- })

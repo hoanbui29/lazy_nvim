@@ -11,8 +11,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        "Decodetalkers/csharpls-extended-lsp.nvim",
-        "Hoffs/omnisharp-extended-lsp.nvim"
+        "Decodetalkers/csharpls-extended-lsp.nvim"
     },
     init = function()
     end,
@@ -63,9 +62,30 @@ return {
                 end,
                 ["omnisharp"] = function()
                     local lspconfig = require("lspconfig")
+                    local omnisharp_pid = nil
+                    -- Autocmd to kill Omnisharp process when exiting Neovim
+                    vim.api.nvim_create_autocmd("VimLeavePre", {
+                        callback = function()
+                            if omnisharp_pid then
+                                -- Terminate the process using the stored PID
+                                vim.fn.jobstart("kill -9 " .. omnisharp_pid)
+                            end
+                        end,
+                    })
                     lspconfig.omnisharp.setup({
+                        -- cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+                        filetypes = { "cs", "vb" },
+                        on_attach = function(client)
+                            omnisharp_pid = client.rpc.client.id
+                        end,
+                        root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
                         capabilities = capabilities,
-                        cmd = { "dotnet", "/home/hoan/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+                        handlers = {
+                            ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+                            ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+                            ["textDocument/references"] = require('omnisharp_extended').references_handler,
+                            ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+                        },
                         -- Enables support for reading code style, naming convention and analyzer
                         -- settings from .editorconfig.
                         enable_editorconfig_support = true,
@@ -77,7 +97,7 @@ return {
                         -- incomplete reference lists for symbols.
                         enable_ms_build_load_projects_on_demand = false,
                         -- Enables support for roslyn analyzers, code fixes and rulesets.
-                        enable_roslyn_analyzers = false,
+                        enable_roslyn_analyzers = true,
                         -- Specifies whether 'using' directives should be grouped and sorted during
                         -- document formatting.
                         organize_imports_on_format = true,
@@ -87,7 +107,7 @@ return {
                         -- have a negative impact on initial completion responsiveness,
                         -- particularly for the first few completion sessions after opening a
                         -- solution.
-                        enable_import_completion = true,
+                        enable_import_completion = false,
                         -- Specifies whether to include preview versions of the .NET SDK when
                         -- determining which version to use for project loading.
                         sdk_include_prereleases = true,

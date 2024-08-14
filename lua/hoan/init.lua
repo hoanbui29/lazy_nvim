@@ -50,9 +50,18 @@ autocmd('LspAttach', {
     group = ThePrimeagenGroup,
     callback = function(e)
         local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-        vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+        local filetype = vim.api.nvim_buf_get_option(e.buf, "filetype")
+
+        if filetype == "cs" then
+            vim.keymap.set('n', 'gd', "<cmd>lua require('omnisharp_extended').lsp_definition()<CR>", opts)
+            vim.keymap.set('n', '<leader>D', "<cmd>lua require('omnisharp_extended').lsp_type_definition()<CR>", opts)
+            vim.keymap.set('n', 'gr', "<cmd>lua require('omnisharp_extended').lsp_references()<CR>", opts)
+            vim.keymap.set('n', 'gi', "<cmd>lua require('omnisharp_extended').lsp_implementation()<CR>", opts)
+        else
+            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+            vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+        end
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)

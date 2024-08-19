@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-    color = color or "rose-pine"
+    color = color or "kanagawa"
     vim.cmd.colorscheme(color)
     -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -72,7 +72,7 @@ return {
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 style = "storm",        -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-                transparent = true,     -- Enable this to disable setting the background color
+                transparent = false,    -- Enable this to disable setting the background color
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
                 styles = {
                     -- Style to be applied to different syntax groups
@@ -91,13 +91,14 @@ return {
         name = "rose-pine",
         config = function()
             require('rose-pine').setup({
-                disable_background = true,
-                transparent = true,
+                disable_background = false,
+                variant = "moon",      -- auto, main, moon, or dawn
+                dark_variant = "moon", -- main, moon, or dawn
+                transparent = false,
                 styles = {
                     italic = false,
                 },
             })
-            ColorMyPencils("catppuccin")
         end
     },
     {
@@ -111,22 +112,16 @@ return {
                 keywordStyle = { italic = true },
                 statementStyle = { bold = true },
                 typeStyle = {},
-                transparent = true,    -- do not set background color
+                transparent = false,   -- do not set background color
                 dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
                 terminalColors = true, -- define vim.g.terminal_color_{0,17}
-                colors = {             -- add/modify theme and palette colors
-                    palette = {},
-                    theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-                },
-                overrides = function(colors) -- add/modify highlights
-                    return {}
-                end,
-                theme = "wave",    -- Load "wave" theme when 'background' option is not set
-                background = {     -- map the value of 'background' option to a theme
-                    dark = "wave", -- try "dragon" !
-                    light = "lotus"
-                },
+                theme = "wave",        -- Load "wave" theme when 'background' option is not set
+                background = {
+                    dark = "dragon",   -- Load "dragon" theme when 'background' option is set to "dark"
+                    light = "wave",    -- Load "wave" theme when 'background' option is set to "light"
+                }
             })
+            ColorMyPencils("kanagawa")
         end
 
     },
@@ -136,7 +131,7 @@ return {
             require("eldritch").setup({
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
-                transparent = true,     -- Enable this to disable setting the background color
+                transparent = false,    -- Enable this to disable setting the background color
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
                 styles = {
                     -- Style to be applied to different syntax groups
@@ -171,6 +166,7 @@ return {
         "sainnhe/everforest",
         config = function()
             vim.g.everforest_enable_italic = true
+            vim.g.everforest_background = 'medium'
         end
     },
     {
@@ -233,9 +229,6 @@ return {
                     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
                 },
             })
-
-            -- setup must be called before loading
-            vim.cmd.colorscheme "catppuccin"
         end
     }
 }

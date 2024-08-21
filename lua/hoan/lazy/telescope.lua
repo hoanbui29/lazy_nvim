@@ -20,7 +20,6 @@ return {
         vim.keymap.set('n', '<leader>fgs', builtin.git_status, {})
         vim.keymap.set('n', '<leader>fgc', builtin.git_commits, {})
         vim.keymap.set('n', '<leader>fgb', builtin.git_bcommits, {})
-        vim.keymap.set('n', '<leader>fn', require('telescope').extensions.notify.notify, {})
         vim.keymap.set('n', '<leader>fws', function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })

@@ -40,10 +40,6 @@ return {
 
                 ["csharp_ls"] = function()
                     local lspconfig = require("lspconfig")
-                    local pid = vim.fn.getpid()
-                    -- On linux/darwin if using a release build, otherwise under scripts/OmniSharp(.Core)(.cmd)
-                    -- on Windows
-                    -- local omnisharp_bin = "/path/to/omnisharp/OmniSharp.exe"
 
                     local csharpconf = {
                         cmd = { "csharp-ls" },
@@ -74,7 +70,7 @@ return {
                     })
                     lspconfig.omnisharp.setup({
                         -- cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-                        filetypes = { "cs", "vb" },
+                        filetypes = {},
                         on_attach = function(client)
                             omnisharp_pid = client.rpc.client.id
                         end,

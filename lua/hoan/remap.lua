@@ -45,7 +45,7 @@ end
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ex_to_current_file)
 
-vim.api.nvim_set_keymap('n', '<C-q>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-c><C-s>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
 -- Allow move code up and down in visual mode
@@ -109,37 +109,21 @@ vim.api.nvim_set_keymap('n', '<leader>K', '<Cmd>lua vim.lsp.buf.hover()<CR>', { 
 -- vim.api.nvim_set_keymap('n', '<C-/>', '<cmd>lua insert_csharp_xmldoc()<CR>', { noremap = true, silent = true })
 
 --Nvim tree navigation
-vim.keymap.set("n", "<leader>tt", "<cmd>NvimTreeToggle()<CR>")
-vim.keymap.set("n", "<leader>tf", "<cmd>NvimTreeFocus()<CR>")
-vim.keymap.set("n", "<leader>tg", "<cmd>NvimTreeFindFile()<CR>")
-vim.keymap.set("n", "<leader>tc", "<cmd>NvimTreeCollapse()<CR>")
+-- vim.keymap.set("n", "<leader>tt", "<cmd>NvimTreeToggle()<CR>")
+-- vim.keymap.set("n", "<leader>tf", "<cmd>NvimTreeFocus()<CR>")
+-- vim.keymap.set("n", "<leader>tg", "<cmd>NvimTreeFindFile()<CR>")
+-- vim.keymap.set("n", "<leader>tc", "<cmd>NvimTreeCollapse()<CR>")
 
 --vim.api.nvim_set_keymap('n', '<C-q>', '<C-w>h', { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<C-w>', '<C-w>l', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>n>', vim.lsp.buf.rename, {})
 
+vim.keymap.set(
+    "n",
+    "<leader>ee",
+    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
+)
+
 -- Remove seach highlight
 vim.keymap.set('n', '<Leader>l', '<Cmd>noh<CR>', opts)
-
--- Terminal mappings
-vim.api.nvim_create_autocmd("TermEnter", {
-    pattern = "term://*toggleterm#*",
-    callback = function()
-        vim.api.nvim_set_keymap("t", "<c-t>", "<Cmd>exe v:count1 . 'ToggleTerm'<CR>", { silent = true, noremap = true })
-    end
-})
-
--- Normal mode mapping
-vim.api.nvim_set_keymap("n", "<c-t>", "<Cmd>exe v:count1 . 'ToggleTerm direction=float'<CR>",
-    { silent = true, noremap = true })
--- Insert mode mapping
--- vim.api.nvim_set_keymap("i", "<c-t>", "<Esc><Cmd>exe v:count1 . 'ToggleTerm'<CR>", { silent = true, noremap = true })
-
--- Format on save
--- vim.api.nvim_create_autocmd("BufWritePre", {
---     pattern = { "*.cs", "*.go" },
---     callback = function()
---         vim.lsp.buf.format()
---     end,
--- })

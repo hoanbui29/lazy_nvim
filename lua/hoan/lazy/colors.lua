@@ -1,33 +1,35 @@
 function ColorMyPencils(color)
-    color = color or "kanagawa"
+    color = color or "rose-pine-moon"
     vim.cmd.colorscheme(color)
-    -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "Matching", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "GitSignsChange", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "DiagnosticSignError", { bg = "none", fg = "red" })
-    -- vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { bg = "none", fg = "yellow" })
-    -- vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { bg = "none", fg = "blue" })
-    -- vim.api.nvim_set_hl(0, "DiagnosticSignHint", { bg = "none", fg = "cyan" })
-    -- vim.api.nvim_set_hl(0, "DiagnosticSignOk", { bg = "none", fg = "green" })
-    -- vim.api.nvim_set_hl(0, "DiagnosticDeprecated", { bg = "none", fg = "brown" })
-    -- vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { bg = "none", fg = "grey" })
-    -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "FloatTitle", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "FloatNormal", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Matching", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsChange", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
+    vim.api.nvim_set_hl(0, "DiagnosticSignError", { bg = "none", fg = "red" })
+    vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { bg = "none", fg = "yellow" })
+    vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { bg = "none", fg = "blue" })
+    vim.api.nvim_set_hl(0, "DiagnosticSignHint", { bg = "none", fg = "cyan" })
+    vim.api.nvim_set_hl(0, "DiagnosticSignOk", { bg = "none", fg = "green" })
+    vim.api.nvim_set_hl(0, "DiagnosticDeprecated", { bg = "none", fg = "brown" })
+    vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { bg = "none", fg = "grey" })
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+    vim.api.nvim_set_hl(0, "FloatTitle", { bg = "none" })
+    vim.api.nvim_set_hl(0, "FloatNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 end
 
 return {
@@ -91,10 +93,7 @@ return {
         name = "rose-pine",
         config = function()
             require('rose-pine').setup({
-                disable_background = false,
-                variant = "moon",      -- auto, main, moon, or dawn
-                dark_variant = "moon", -- main, moon, or dawn
-                transparent = false,
+                disable_background = true,
                 styles = {
                     italic = false,
                 },
@@ -105,23 +104,52 @@ return {
         "rebelot/kanagawa.nvim",
         config = function()
             require('kanagawa').setup({
-                compile = false,  -- enable compiling the colorscheme
+                compile = true,   -- enable compiling the colorscheme
                 undercurl = true, -- enable undercurls
                 commentStyle = { italic = true },
-                functionStyle = {},
+                functionStyle = { bold = true, italic = true },
                 keywordStyle = { italic = true },
                 statementStyle = { bold = true },
-                typeStyle = {},
+                typeStyle = { bold = true },
                 transparent = false,   -- do not set background color
-                dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+                dimInactive = true,    -- dim inactive window `:h hl-NormalNC`
                 terminalColors = true, -- define vim.g.terminal_color_{0,17}
                 theme = "wave",        -- Load "wave" theme when 'background' option is not set
                 background = {
                     dark = "dragon",   -- Load "dragon" theme when 'background' option is set to "dark"
-                    light = "wave",    -- Load "wave" theme when 'background' option is set to "light"
-                }
+                    light = "dragon",  -- Load "wave" theme when 'background' option is set to "light"
+                },
+                overrides = function(colors)
+                    local theme = colors.theme
+                    return {
+                        NormalFloat = { bg = "none" },
+                        FloatBorder = { bg = "none" },
+                        FloatTitle = { bg = "none" },
+
+                        -- Save an hlgroup with dark background and dimmed foreground
+                        -- so that you can use it where your still want darker windows.
+                        -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+                        NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+
+                        -- Popular plugins that open floats will link to NormalFloat by default;
+                        -- set their background accordingly if you wish to keep them dark and borderless
+                        LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+                        MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+                        TelescopeTitle = { fg = theme.ui.special, bold = true },
+                        TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+                        TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+                        TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+                        TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+                        TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+                        TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+                        Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+                        PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+                        PmenuSbar = { bg = theme.ui.bg_m1 },
+                        PmenuThumb = { bg = theme.ui.bg_p2 },
+                    }
+                end,
             })
-            ColorMyPencils("kanagawa")
+            ColorMyPencils()
         end
 
     },
@@ -146,7 +174,7 @@ return {
                 },
                 sidebars = { "qf", "help" },      -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
                 hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-                dim_inactive = false,             -- dims inactive windows, transparent must be false for this to work
+                dim_inactive = true,              -- dims inactive windows, transparent must be false for this to work
                 lualine_bold = true,              -- When `true`, section headers in the lualine theme will be bold
 
                 --- You can override specific color groups to use other groups or a hex color
@@ -230,5 +258,27 @@ return {
                 },
             })
         end
+    },
+    {
+        'AlexvZyl/nordic.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require 'nordic'.load()
+        end
     }
+    , {
+    "EdenEast/nightfox.nvim",
+    config = function()
+        require('nightfox').setup({
+            options = {
+                styles = {
+                    comments = "italic",
+                    keywords = "bold",
+                    types = "italic,bold",
+                }
+            }
+        })
+    end
+},
 }

@@ -13,6 +13,7 @@ return {
         },
         formatters_by_ft = {
             cs = { "csharpier" },
+            go = { "gofumpt" },
             html = { "prettier" },
             json = { "prettier" },
             lua = { "stylua" },

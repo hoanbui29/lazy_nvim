@@ -11,7 +11,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        "Decodetalkers/csharpls-extended-lsp.nvim"
+        "Decodetalkers/csharpls-extended-lsp.nvim",
     },
     init = function()
     end,
@@ -29,7 +29,9 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls"
+                "lua_ls",
+                "rust_analyzer",
+                "gopls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -38,50 +40,31 @@ return {
                     }
                 end,
 
-                ["csharp_ls"] = function()
+                csharp_ls = function()
                     local lspconfig = require("lspconfig")
-
                     local csharpconf = {
                         cmd = { "csharp-ls" },
                         handlers = {
                             ["textDocument/definition"] = require('csharpls_extended').handler,
                             ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
-                        },
-                        init_options = {
-                            AutomaticWorkspaceInit = true,
-                            HostPid = pid,
-                            RootPath = vim.fn.getcwd(),
-                        },
+                        }
                     }
 
                     lspconfig.csharp_ls.setup(csharpconf)
                 end,
                 ["omnisharp"] = function()
                     local lspconfig = require("lspconfig")
-                    local omnisharp_pid = nil
-                    -- Autocmd to kill Omnisharp process when exiting Neovim
-                    vim.api.nvim_create_autocmd("VimLeavePre", {
-                        callback = function()
-                            if omnisharp_pid then
-                                -- Terminate the process using the stored PID
-                                vim.fn.jobstart("kill -9 " .. omnisharp_pid)
-                            end
-                        end,
-                    })
                     lspconfig.omnisharp.setup({
-                        -- cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-                        filetypes = {},
-                        on_attach = function(client)
-                            omnisharp_pid = client.rpc.client.id
-                        end,
+                        cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+                        -- filetypes = {},
                         root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
                         capabilities = capabilities,
-                        handlers = {
-                            ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
-                            ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
-                            ["textDocument/references"] = require('omnisharp_extended').references_handler,
-                            ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
-                        },
+                        -- handlers = {
+                        --     ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+                        --     ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+                        --     ["textDocument/references"] = require('omnisharp_extended').references_handler,
+                        --     ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+                        -- },
                         -- Enables support for reading code style, naming convention and analyzer
                         -- settings from .editorconfig.
                         enable_editorconfig_support = true,
@@ -161,14 +144,6 @@ return {
                 Copilot = "",
             },
         })
-        vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
-        local has_words_before = function()
-            if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
-            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-            return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-        end
-
 
         cmp.setup({
             snippet    = {
@@ -184,18 +159,11 @@ return {
                 ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 ['<C-e>'] = cmp.mapping.close(),
                 ["<C-Space>"] = cmp.mapping.complete(),
-                -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
-                --     if cmp.visible() and has_words_before() then
-                --         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                --     else
-                --         fallback()
-                --     end
-                -- end),
             }),
             formatting = {
                 format = lspkind.cmp_format({
-                    mode = 'symbol', -- show only symbol annotations
-                    maxwidth = 50,   -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    -- mode = 'symbol', -- show only symbol annotations
+                    maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                     -- can also be a function to dynamically calculate max width such as
                     -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
                     ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
@@ -203,23 +171,10 @@ return {
                 })
             },
             sources    = cmp.config.sources({
-                -- Copilot Source
-                -- { name = "copilot",  group_index = 2 },
-                { name = 'nvim_lsp', group_index = 2 },
+                { name = 'nvim_lsp' },
                 { name = 'luasnip' },
-                -- { name = 'buffer',   group_index = 2 },
-            }),
-            sorting    = {
-                comparators = {
-                    cmp.config.compare.offset,
-                    cmp.config.compare.exact,
-                    cmp.config.compare.score,
-                    cmp.config.compare.kind,
-                    cmp.config.compare.sort_text,
-                    cmp.config.compare.length,
-                    cmp.config.compare.order,
-                }
-            }
+                { name = 'buffer' },
+            })
         })
 
         vim.diagnostic.config({

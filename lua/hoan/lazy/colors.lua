@@ -1,35 +1,35 @@
 function ColorMyPencils(color)
-    color = color or "rose-pine-moon"
+    color = color or "rose-pine"
     vim.cmd.colorscheme(color)
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "Matching", { bg = "none" })
-    vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
-    vim.api.nvim_set_hl(0, "GitSignsChange", { bg = "none" })
-    vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignError", { bg = "none", fg = "red" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { bg = "none", fg = "yellow" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { bg = "none", fg = "blue" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignHint", { bg = "none", fg = "cyan" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignOk", { bg = "none", fg = "green" })
-    vim.api.nvim_set_hl(0, "DiagnosticDeprecated", { bg = "none", fg = "brown" })
-    vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { bg = "none", fg = "grey" })
-    vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-    vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
-    vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-    vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-    vim.api.nvim_set_hl(0, "FloatTitle", { bg = "none" })
-    vim.api.nvim_set_hl(0, "FloatNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "Matching", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "GitSignsChange", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticSignError", { bg = "none", fg = "red" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { bg = "none", fg = "yellow" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { bg = "none", fg = "blue" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticSignHint", { bg = "none", fg = "cyan" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticSignOk", { bg = "none", fg = "green" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticDeprecated", { bg = "none", fg = "brown" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { bg = "none", fg = "grey" })
+    -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "FloatTitle", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "FloatNormal", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 end
 
 return {
@@ -73,18 +73,18 @@ return {
             require("tokyonight").setup({
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
-                style = "storm",        -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-                transparent = false,    -- Enable this to disable setting the background color
+                style = "night",        -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+                transparent = true,     -- Enable this to disable setting the background color
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-                styles = {
-                    -- Style to be applied to different syntax groups
-                    -- Value is any valid attr-list value for `:help nvim_set_hl`
-                    comments = { italic = false },
-                    keywords = { italic = false },
-                    -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = "dark", -- style for sidebars, see below
-                    floats = "dark",   -- style for floating windows
-                },
+                -- styles = {
+                --     -- Style to be applied to different syntax groups
+                --     -- Value is any valid attr-list value for `:help nvim_set_hl`
+                --     comments = { italic = false },
+                --     keywords = { italic = false },
+                --     -- Background styles. Can be "dark", "transparent" or "normal"
+                --     sidebars = "dark", -- style for sidebars, see below
+                --     floats = "dark",   -- style for floating windows
+                -- },
             })
         end
     },
@@ -95,8 +95,13 @@ return {
             require('rose-pine').setup({
                 disable_background = true,
                 styles = {
+                    bold = true,
                     italic = false,
+                    transparency = true,
                 },
+                highlight_groups = {
+                    TelescopePreviewLine = { bg = "#3e4452" }
+                }
             })
         end
     },

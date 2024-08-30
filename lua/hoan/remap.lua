@@ -45,7 +45,7 @@ end
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ex_to_current_file)
 
-vim.api.nvim_set_keymap('n', '<C-c><C-s>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-q>', ':lua generateCSharpClass()<CR>', { noremap = true, silent = true })
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
 -- Allow move code up and down in visual mode
@@ -76,9 +76,9 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Copy to system clipboard
 vim.keymap.set({ "n", "v" }, "y", [["+y]])
 vim.keymap.set("n", "Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "c", [["+c]])
-vim.keymap.set("n", "C", [["+C]])
-vim.keymap.set({ "n", "v" }, "x", [["+x]])
+-- vim.keymap.set({ "n", "v" }, "c", [["+c]])
+-- vim.keymap.set("n", "C", [["+C]])
+-- vim.keymap.set({ "n", "v" }, "x", [["+x]])
 
 -- Cut to clipboard
 vim.keymap.set({ "n", "v" }, "<leader>d", [["+x]])

@@ -6,6 +6,6 @@ return {
         })
 
         -- Example keymapping
-        vim.keymap.set('n', '<leader>rb', function() require('reach').buffers(buffer_options) end, {})
+        vim.keymap.set('n', '<leader>b', function() require('reach').buffers(buffer_options) end, {})
     end
 }

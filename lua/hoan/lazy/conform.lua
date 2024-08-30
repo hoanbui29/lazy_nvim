@@ -19,7 +19,7 @@ return {
             lua = { "stylua" },
             markdown = { "prettier", "injected" },
             xml = { "xmlformat" },
-            -- yaml = { "yamlfix" },
+            yaml = { "yamlfix" },
         },
     },
     config = function()

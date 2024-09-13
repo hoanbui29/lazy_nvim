@@ -12,10 +12,18 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
         "Decodetalkers/csharpls-extended-lsp.nvim",
+        "Hoffs/omnisharp-extended-lsp.nvim",
     },
     init = function()
     end,
-
+    servers = {
+        roslyn = {},
+    },
+    setup = {
+        roslyn = function(_, opts) -- code
+            require("roslyn").setup(opts)
+        end,
+    },
     config = function()
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
@@ -59,12 +67,12 @@ return {
                         -- filetypes = {},
                         root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
                         capabilities = capabilities,
-                        -- handlers = {
-                        --     ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
-                        --     ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
-                        --     ["textDocument/references"] = require('omnisharp_extended').references_handler,
-                        --     ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
-                        -- },
+                        handlers = {
+                            ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+                            ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+                            ["textDocument/references"] = require('omnisharp_extended').references_handler,
+                            ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+                        },
                         -- Enables support for reading code style, naming convention and analyzer
                         -- settings from .editorconfig.
                         enable_editorconfig_support = true,
@@ -173,7 +181,7 @@ return {
             sources    = cmp.config.sources({
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
-                { name = 'buffer' },
+                -- { name = 'buffer' },
             })
         })
 

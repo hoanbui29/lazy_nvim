@@ -1,29 +1,12 @@
 return {
     {
-        "zbirenbaum/copilot.lua",
+        "github/copilot.vim",
         config = function()
-            require("copilot").setup({
-                suggestion = {
-                    enabled = true,
-                    auto_trigger = true,
-                    hide_during_completion = false,
-                    keymap = {
-                        accept = "<C-l>",
-                        accept_word = false,
-                        accept_line = false,
-                        next = "<C-S-j>",
-                        prev = "<C-S-k>",
-                        dismiss = "<C-S-]>",
-                    },
-                },
-                panel = { enabled = true },
+            vim.keymap.set('i', '<C-l>', 'copilot#Accept("\\<CR>")', {
+                expr = true,
+                replace_keycodes = false
             })
+            vim.g.copilot_no_tab_map = true
         end
     },
-    {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-            require("copilot_cmp").setup()
-        end,
-    }
 }

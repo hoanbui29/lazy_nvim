@@ -290,5 +290,11 @@ return {
         "sainnhe/sonokai",
         config = function()
         end
+    },
+    {
+        "sainnhe/gruvbox-material",
+        config = function()
+
+        end
     }
 }

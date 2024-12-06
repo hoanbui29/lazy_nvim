@@ -2,7 +2,7 @@ return {
     'stevearc/conform.nvim',
     opts = {
         format_on_save = {
-            timeout_ms = 500,
+            timeout_ms = 100,
             lsp_fallback = true,
         },
         formatters = {
@@ -20,13 +20,15 @@ return {
             markdown = { "prettier", "injected" },
             xml = { "xmlformat" },
             yaml = { "yamlfix" },
+            rust = { "rustfmt" },
+            lua = { "stylua" },
         },
     },
     config = function()
         require("conform").setup({
             format_on_save = {
                 -- These options will be passed to conform.format()
-                timeout_ms = 500,
+                timeout_ms = 100,
                 lsp_format = "fallback",
             },
         })

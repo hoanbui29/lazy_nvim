@@ -5,8 +5,8 @@ return {
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
-                "vimdoc", "javascript", "typescript", "c", "lua", "rust",
-                "jsdoc", "bash",
+                "vimdoc", "javascript", "typescript", "c", "lua",
+                "jsdoc", "bash", "rust"
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -41,7 +41,12 @@ return {
             },
         }
 
-        vim.treesitter.language.register("templ", "templ")
+        treesitter_parser_config.rust = {
+            install_info = {
+                url = "https://github.com/tree-sitter/tree-sitter-rust", -- Repository URL
+                files = { "src/parser.c", "src/scanner.c" },             -- Parser files
+                branch = "master",                                       -- Or specify a specific branch
+            },
+        }
     end
 }
-

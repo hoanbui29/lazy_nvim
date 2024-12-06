@@ -127,3 +127,5 @@ vim.keymap.set(
 
 -- Remove seach highlight
 vim.keymap.set('n', '<Leader>l', '<Cmd>noh<CR>', opts)
+
+vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle reveal_force_cwd<CR>', { noremap = true, silent = true })

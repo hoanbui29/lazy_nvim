@@ -28,10 +28,10 @@ vim.opt.updatetime = 50
 -- vim.opt["guicursor"] = ""
 vim.o.guicursor = 'n-v-c-sm-i-ci-ve:block'
 
-vim.api.nvim_command('hi! link NormalFloat Normal')
+-- vim.api.nvim_command('hi! link NormalFloat Normal')
 
 --vim.opt.colorcolumn = "80"
 
-vim.api.nvim_set_var('netrw_bufsettings', 'noma nomod nu nowrap ro nobl')
+-- vim.api.nvim_set_var('netrw_bufsettings', 'noma nomod nu nowrap ro nobl')
 -- vim.cmd("set spell spelllang=en_us")
 vim.opt.spell = false

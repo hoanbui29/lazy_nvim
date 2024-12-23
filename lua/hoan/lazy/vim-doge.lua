@@ -1,6 +1,6 @@
 return {
     'kkoomen/vim-doge',
-    run = ":call doge#install()",
+    -- run = ":call doge#install()",
     config = function()
         vim.g.doge_doc_standard_cs = 'xmldoc'
 

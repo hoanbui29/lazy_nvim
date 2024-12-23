@@ -1,10 +1,6 @@
 return {
     'stevearc/conform.nvim',
     opts = {
-        format_on_save = {
-            timeout_ms = 100,
-            lsp_fallback = true,
-        },
         formatters = {
             xmlformat = {
                 cmd = { "xmlformat" },
@@ -25,12 +21,10 @@ return {
         },
     },
     config = function()
-        require("conform").setup({
-            format_on_save = {
-                -- These options will be passed to conform.format()
-                timeout_ms = 100,
-                lsp_format = "fallback",
-            },
+        local conform = require("conform")
+        conform.setup({
+            format_after_save = {
+                lsp_format = "fallback", },
         })
     end
 }

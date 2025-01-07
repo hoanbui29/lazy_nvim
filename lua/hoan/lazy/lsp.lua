@@ -120,6 +120,21 @@ return {
             })
         })
 
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'path' },    -- For paths
+                { name = 'cmdline' }, -- For commands
+            },
+        })
+
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }, -- For buffer search
+            },
+        })
+
         vim.diagnostic.config({
             -- update_in_insert = true,
             virtual_text = true,
